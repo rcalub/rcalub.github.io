@@ -1,0 +1,16 @@
+Functions to add:
+
+getCornerByColor: (color1: string, color2: string, color3: string => [face, index])
+  - 
+
+findEdge: (edge: string => currentLocation: [face, index])
+
+getEdgeRotation: (cubicle: string => currentRotation: int)
+
+findCorner: (corner: string => currentLocation: [face, index])
+
+getCornerRotation: (cubicle: string => currentRotation: int)
+
+checkSolvedEdge: (cubicle: sting => solved: boolean)
+
+checkSoledCorner: (cubicle: sting => solved: boolean)

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rubik's Cube Solver Test</title>
+    <link rel="stylesheet" href="./style.css">
+    <script type="text/javascript" src="./index.js"></script>
+  </head>
+  <body onload="Canvas.setCurCanvas(15)">
+    <h1>A 2-Dimensional Render of a Cube</h1>
+    <div id="main-div">
+      <div id="canvas-button-div">  
+        <button onclick="RubiksCube.displaySolvedCube()">Show Solved Cube</button>
+        <button onclick="curCanvas.clearCanvas()">Clear Cube</button>
+        <button onclick="RubiksCube.scrambleCube()">Scramble Cube</button>
+        <button onclick="RubiksCube.solveCube()">Solve Cube</button>
+      </div>
+      <div id="canvas-div">
+        <canvas id="tutorial">
+            Unable to render canvas.
+        </canvas>
+      </div>
+      <div id="cube-input-div">
+        <input reset type="text" id="cube-input-front" placeholder="Front Face Of Cube">
+        <input reset type="text" id="cube-input-right" placeholder="Right Face Of Cube">
+        <input reset type="text" id="cube-input-top" placeholder="Top Face Of Cube">
+        <input reset type="text" id="cube-input-left" placeholder="Left Face Of Cube">
+        <input reset type="text" id="cube-input-bottom" placeholder="Bottom Face Of Cube">
+        <input reset type="text" id="cube-input-back" placeholder="Back Face Of Cube">
+        <button onclick="RubiksCube.displayCustomCube()">Render Custom Cube</button>
+      </div>
+    </div>
+    <div id="rotation-button-div">
+      <div id="rotation-button-div-cw">
+        <button onclick="curCanvas.onDisplay.getRotationF()" style="background-color: #B90000;" class="interact-button">F Rotation</button>
+        <button onclick="curCanvas.onDisplay.getRotationB()" style="background-color: #FF5900;" class="interact-button">B Rotation</button>
+        <button onclick="curCanvas.onDisplay.getRotationU()" style="background-color: #FFFFFF;" class="interact-button">U Rotation</button>
+        <button onclick="curCanvas.onDisplay.getRotationD()" style="background-color: #FFD500;" class="interact-button">D Rotation</button>
+        <button onclick="curCanvas.onDisplay.getRotationL()" style="background-color: #009B48;" class="interact-button">L Rotation</button>
+        <button onclick="curCanvas.onDisplay.getRotationR()" style="background-color: #0045AD;" class="interact-button">R Rotation</button>
+      </div>
+      <div id="rotation-button-div-ccw">
+        <button onclick="curCanvas.onDisplay.getRotationFPrime()" style="background-color: #B90000;" class="interact-button">F' Rotation</button>
+        <button onclick="curCanvas.onDisplay.getRotationBPrime()" style="background-color: #FF5900;" class="interact-button">B' Rotation</button>
+        <button onclick="curCanvas.onDisplay.getRotationUPrime()" style="background-color: #FFFFFF;" class="interact-button">U' Rotation</button>
+        <button onclick="curCanvas.onDisplay.getRotationDPrime()" style="background-color: #FFD500;" class="interact-button">D' Rotation</button>
+        <button onclick="curCanvas.onDisplay.getRotationLPrime()" style="background-color: #009B48;" class="interact-button">L' Rotation</button>
+        <button onclick="curCanvas.onDisplay.getRotationRPrime()" style="background-color: #0045AD;" class="interact-button">R' Rotation</button>
+      </div>
+    </div>
+  </body>
+</html>

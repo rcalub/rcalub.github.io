@@ -1,0 +1,66 @@
+body {
+  background-color: antiquewhite;
+}
+
+canvas {
+  border: 1px solid black;
+  background-color: beige;
+}
+
+h1 {
+  text-align: center;
+}
+
+#main-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+#rotation-button-div{
+  margin-top: 40px;
+}
+
+#rotation-button-div div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+button.interact-button {
+  width: 200px;
+  height: 100px;
+  margin: auto;
+  font-weight: bold;
+}
+
+#cube-input-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+#cube-input-div input {
+  margin: auto;
+  height: 21px;
+  width: 200px;
+}
+
+#cube-input-div button {
+  margin: auto;
+  height: 21px;
+  width: 200px;
+}
+
+#canvas-button-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#canvas-button-div button{
+  height: 100px;
+  width: 200px;
+  margin: auto;
+}
