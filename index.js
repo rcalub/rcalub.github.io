@@ -1041,7 +1041,7 @@ class RubiksCube {
     const [faceRB, indexRB] = curCanvas.onDisplay.getEdgeByColor(R, B);
     const orientationRB = curCanvas.onDisplay.getPiece(['front', 5]);
     if (faceRB == 'front' && indexRB == 5 && orientationRB == R) {
-      console.log('RB Solved');
+      //console.log('RB Solved');
     }
     else {
       if (faceRB == 'front') {
@@ -1090,8 +1090,8 @@ class RubiksCube {
     // Solves RG Edge
     const [faceRG, indexRG] = curCanvas.onDisplay.getEdgeByColor(R, G);
     const orientationRG = curCanvas.onDisplay.getPiece(['front', 3]);
-    if (faceRG == 'front' && indexRG == 5 && orientationRG == R) {
-      console.log('RG Solved');
+    if (faceRG == 'front' && indexRG == 3 && orientationRG == R) {
+      //console.log('RG Solved');
     }
     else {
       if (faceRG == 'front') {
@@ -1140,64 +1140,154 @@ class RubiksCube {
     // Solves OB Edge
     const [faceOB, indexOB] = curCanvas.onDisplay.getEdgeByColor(O, B);
     const orientationOB = curCanvas.onDisplay.getPiece(['back', 3]);
-    if (faceOB == 'front' && indexOB == 5 && orientationOB == O) {
-      console.log('OB Solved');
+    if (faceOB == 'back' && indexOB == 3 && orientationOB == O) {
+      //console.log('OB Solved');
     }
     else {
       if (faceOB == 'front') {
         if (indexOB == 3) {
           RubiksCube.doMovesFromArray(['D', 'L', 'D\'', 'L\'', 'D\'', 'F\'', 'D', 'F']);
-          RubiksCube.doMovesFromArray(['D']);
         }
         else if (indexOB == 5) {
           RubiksCube.doMovesFromArray(['D', 'F', 'D\'', 'F\'', 'D\'', 'R\'', 'D', 'R']);
+          RubiksCube.doMovesFromArray(['D\'']);
         }
       }
       else if (faceOB == 'back') {
         if (indexOB == 3) {
           RubiksCube.doMovesFromArray(['D', 'R', 'D\'', 'R\'', 'D\'', 'B\'', 'D', 'B']);
-          RubiksCube.doMovesFromArray(['D\'']);
+          RubiksCube.doMovesFromArray(['D2']);
         }
         else if (indexRG == 5) {
           RubiksCube.doMovesFromArray(['D', 'B', 'D\'', 'B\'', 'D\'', 'L\'', 'D', 'L']);
-          RubiksCube.doMovesFromArray(['D2']);
+          RubiksCube.doMovesFromArray(['D']);
         }
       }
       else if (faceOB == 'bottom') {
         if (indexOB == 1) {
-          RubiksCube.doMovesFromArray(['D\'']);
-        }
-        else if (indexOB == 3) {
-          // Do nothing
-        }
-        else if (indexOB == 5) {
           RubiksCube.doMovesFromArray(['D2']);
         }
-        else if (indexOB == 7) {
+        else if (indexOB == 3) {
+          RubiksCube.doMovesFromArray(['D\'']);
+        }
+        else if (indexOB == 5) {
           RubiksCube.doMovesFromArray(['D']);
         }
+        else if (indexOB == 7) {
+          // Do nothing
+        }
       }
-      const topColorOB = curCanvas.onDisplay.getPiece(['bottom', 5]);
+      const topColorOB = curCanvas.onDisplay.getPiece(['bottom', 7]);
       if (topColorOB ==  B) {
-        RubiksCube.doMovesFromArray(['D\'', 'F\'', 'D', 'F', 'D', 'L', 'D\'', 'L\'']);
+        RubiksCube.doMovesFromArray(['D', 'R', 'D\'', 'R\'', 'D\'', 'B\'', 'D', 'B']);
       }
       else {
-        RubiksCube.doMovesFromArray(['D']);
-        RubiksCube.doMovesFromArray(['D', 'L', 'D\'', 'L\'', 'D\'', 'F\'', 'D', 'F']);
+        RubiksCube.doMovesFromArray(['D\'']);
+        RubiksCube.doMovesFromArray(['D\'', 'B\'', 'D', 'B', 'D', 'R', 'D\'', 'R\'']);
       }
     }
 
     // Solves OG Edge
     const [faceOG, indexOG] = curCanvas.onDisplay.getEdgeByColor(O, G);
+    const orientationOG = curCanvas.onDisplay.getPiece(['back', 5]);
+    if (faceOG == 'back' && indexOG == 5 && orientationOG == O) {
+      //console.log('OG Solved');
+    }
+    else {
+      if (faceOG == 'front') {
+        if (indexOG == 3) {
+          RubiksCube.doMovesFromArray(['D', 'L', 'D\'', 'L\'', 'D\'', 'F\'', 'D', 'F']);
+        }
+        else if (indexOG == 5) {
+          RubiksCube.doMovesFromArray(['D', 'F', 'D\'', 'F\'', 'D\'', 'R\'', 'D', 'R']);
+          RubiksCube.doMovesFromArray(['D\'']);
+        }
+      }
+      else if (faceOG == 'back') {
+        if (indexOG == 3) {
+          RubiksCube.doMovesFromArray(['D', 'R', 'D\'', 'R\'', 'D\'', 'B\'', 'D', 'B']);
+          RubiksCube.doMovesFromArray(['D2']);
+        }
+        else if (indexRG == 5) {
+          RubiksCube.doMovesFromArray(['D', 'B', 'D\'', 'B\'', 'D\'', 'L\'', 'D', 'L']);
+          RubiksCube.doMovesFromArray(['D']);
+        }
+      }
+      else if (faceOG == 'bottom') {
+        if (indexOG == 1) {
+          RubiksCube.doMovesFromArray(['D2']);
+        }
+        else if (indexOG == 3) {
+          RubiksCube.doMovesFromArray(['D\'']);
+        }
+        else if (indexOG == 5) {
+          RubiksCube.doMovesFromArray(['D']);
+        }
+        else if (indexOG == 7) {
+          // Do nothing
+        }
+      }
+      const topColorOG = curCanvas.onDisplay.getPiece(['bottom', 7]);
+      if (topColorOG ==  G) {
+        RubiksCube.doMovesFromArray(['D\'', 'L\'', 'D', 'L', 'D', 'B', 'D\'', 'B\'']);
+      }
+      else {
+        RubiksCube.doMovesFromArray(['D']);
+        RubiksCube.doMovesFromArray(['D', 'B', 'D\'', 'B\'', 'D\'', 'L\'', 'D', 'L']);
+      }
+    }
   }
   
+  // Input: null
+  // Output: Returns the shape of the yellow pieces on the bottom face ('D'- dot, 'S'- straight line, 'L'- L-shape, 'C'- Cross)
+  getTopShape() {
+    const [y1, y3, y5, y7] = [this.getPiece(['bottom', 1]), this.getPiece(['bottom', 3]), this.getPiece(['bottom', 5]), this.getPiece(['bottom', 7])]
+
+    if (y1 != Y && y3 != Y && y5 != Y && y7 != Y) {
+      return 'D';
+    }
+    else if (y1 == Y && y3 == Y && y5 == Y && y7 == Y) {
+      return 'C';
+    }
+    else if ((y1 == Y && y5 == Y && y3 != Y && y7 != Y) || (y1 != Y && y5 != Y && y3 == Y && y7 == Y)) {
+      return 'S';
+    }
+    else {
+      return 'D';
+    }
+  }
+
+  static formYellowCross() {
+    const topShape = curCanvas.onDisplay.getTopShape();
+    const crossAlgorithm = ['B', 'R', 'D', 'R\'', 'D\'', 'B\''];
+
+    if (topShape == 'D') {
+      RubiksCube.doMovesFromArray(crossAlgorithm);
+      RubiksCube.doMovesFromArray(['D2']);
+      RubiksCube.doMovesFromArray(crossAlgorithm);
+      RubiksCube.doMovesFromArray(crossAlgorithm);
+    }
+
+    else if (topShape == 'S') {
+      if (curCanvas.onDisplay.getPiece(['bottom', 7]) ==  Y) {
+        RubiksCube.doMovesFromArray(['D']);
+      }
+      RubiksCube.doMovesFromArray(crossAlgorithm);
+    }
+
+    else if (topShape == 'L') {
+
+    }
+  }
+
   // Input: null
   // Output: null
   static solveCube() {
     RubiksCube.formCross(); // Done
     RubiksCube.permuteWhiteCorners(); // Done
     RubiksCube.rotateWhiteCorners(); // Done
-    RubiksCube.solveSecondLayer();
+    RubiksCube.solveSecondLayer(); // Done
+    RubiksCube.formYellowCross();
   }
 
   // Input: movesArray: [move1: string, ...]
