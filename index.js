@@ -1038,6 +1038,38 @@ class RubiksCube {
       count++;
     }
   }
+
+  static solveSecondLayer() {
+    // Solves RB Edge
+    let [faceRB, indexRB] = curCanvas.onDisplay.getEdgeByColor(R, B);
+    if (faceRB == 'front') {
+      if (indexRB == 3) {
+        // DO nothing
+      }
+      else if (indexRB == 5) {
+        
+      }
+    
+    }
+    else if (faceRB == 'back') {
+      if (indexRB == 3) {
+
+      }
+      else if (indexRB == 5) {
+        
+      }
+    }
+    [faceRB, indexRB] = curCanvas.onDisplay.getEdgeByColor(R, B);
+
+    // Solves RG Edge
+    const [faceRG, indexRG] = curCanvas.onDisplay.getEdgeByColor(R, G);
+
+    // Solves OB Edge
+    const [faceOB, indexOB] = curCanvas.onDisplay.getEdgeByColor(O, B);
+
+    // Solves OG Edge
+    const [faceOG, indexOG] = curCanvas.onDisplay.getEdgeByColor(O, G);
+  }
   
   // Input: null
   // Output: null
