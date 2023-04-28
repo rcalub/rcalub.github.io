@@ -1242,6 +1242,7 @@ class RubiksCube {
   // Output: Returns the shape of the yellow pieces on the bottom face ('D'- dot, 'S'- straight line, 'L'- L-shape, 'C'- Cross)
   getTopShape() {
     const [y1, y3, y5, y7] = [this.getPiece(['bottom', 1]), this.getPiece(['bottom', 3]), this.getPiece(['bottom', 5]), this.getPiece(['bottom', 7])]
+    console.log
 
     if (y1 != Y && y3 != Y && y5 != Y && y7 != Y) {
       return 'D';
