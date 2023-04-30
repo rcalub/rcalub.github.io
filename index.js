@@ -1249,11 +1249,11 @@ class RubiksCube {
     else if (y1 == Y && y3 == Y && y5 == Y && y7 == Y) {
       return 'C';
     }
-    else if ((y1 == Y && y5 == Y && y3 != Y && y7 != Y) || (y1 != Y && y5 != Y && y3 == Y && y7 == Y)) {
+    else if ((y1 == Y && y5 != Y && y3 != Y && y7 == Y) || (y1 == Y && y3 == Y && y5 == Y && y7 != Y)) {
       return 'S';
     }
     else {
-      return 'D';
+      return 'L';
     }
   }
 
