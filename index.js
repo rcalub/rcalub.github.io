@@ -1249,7 +1249,7 @@ class RubiksCube {
     else if (y1 == Y && y3 == Y && y5 == Y && y7 == Y) {
       return 'C';
     }
-    else if ((y1 == Y && y5 != Y && y3 != Y && y7 == Y) || (y1 == Y && y3 == Y && y5 == Y && y7 != Y)) {
+    else if ((y1 == Y && y5 != Y && y3 != Y && y7 == Y) || (y1 != Y && y3 == Y && y5 == Y && y7 != Y)) {
       return 'S';
     }
     else {
@@ -1276,7 +1276,19 @@ class RubiksCube {
     }
 
     else if (topShape == 'L') {
-
+      let [bottom1, bottom3] = [curCanvas.onDisplay.getPiece(['bottom', 1]), curCanvas.onDisplay.getPiece(['bottom', 3])];
+      let count = 0;
+      while ((bottom1 != Y || bottom3 != Y)) {
+        if (count > 4) {
+          alert('Loop encountered in forming yellow cross');
+          return;
+        }
+        RubiksCube.doMovesFromArray(['D']);
+        [bottom1, bottom3] = [curCanvas.onDisplay.getPiece(['bottom', 1]), curCanvas.onDisplay.getPiece(['bottom', 3])];
+        count++;
+      }
+      RubiksCube.doMovesFromArray(crossAlgorithm);
+      RubiksCube.doMovesFromArray(crossAlgorithm);
     }
   }
 
