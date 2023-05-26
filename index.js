@@ -1292,14 +1292,161 @@ class RubiksCube {
     }
   }
 
+  static permuteLastEdges() {
+    let backEdge = curCanvas.onDisplay.getPiece(['back', 7]);
+    let count = 0;
+    const swapEdge = (['R', 'D', 'R\'', 'D', 'R', 'D2', 'R\'', 'D'])
+    // Moves to orange edge
+    while (backEdge != O) {
+      if (count > 5) {
+        console.log('Permute last edge error');
+        return;
+      }
+      RubiksCube.doMovesFromArray(['D\'']);
+      backEdge = curCanvas.onDisplay.getPiece(['back', 7]);
+      count++;
+    }
+    // Moves to YG cubie
+    RubiksCube.doMovesFromArray(['D\'']);
+    // Checks YG cubie if correct
+    backEdge = curCanvas.onDisplay.getPiece(['back', 7]);
+    // If not YG cube, swap with piece on L
+    if (backEdge != G) {
+      RubiksCube.doMovesFromArray(swapEdge);
+      backEdge = curCanvas.onDisplay.getPiece(['back', 7]);
+      if (backEdge != G) {
+        RubiksCube.doMovesFromArray(['D\'']);
+        RubiksCube.doMovesFromArray(swapEdge);
+        RubiksCube.doMovesFromArray(['D'])
+        RubiksCube.doMovesFromArray(swapEdge);
+      }
+    }
+    RubiksCube.doMovesFromArray(['D\'']);
+    backEdge = curCanvas.onDisplay.getPiece(['back', 7]);
+    if (backEdge != R) {
+      RubiksCube.doMovesFromArray(swapEdge);
+    }
+    backEdge = curCanvas.onDisplay.getPiece(['back', 7]);
+    count = 0;
+    while (backEdge != O) {
+      if (count > 5) {
+        console.log('Permute last edge error');
+        return;
+      }
+      RubiksCube.doMovesFromArray(['D\'']);
+      backEdge = curCanvas.onDisplay.getPiece(['back', 7]);
+      count++;
+    }
+  }
+
+  static permuteLastCorners(count) {
+    let cornerYBO = curCanvas.onDisplay.findCornerByColor(Y, B, O); // Should be 2
+    let cornerYOG = curCanvas.onDisplay.findCornerByColor(Y, O, G); // Should be 8
+    let cornerYGR = curCanvas.onDisplay.findCornerByColor(Y, G, R); // Should be 6
+    let cornerYRB = curCanvas.onDisplay.findCornerByColor(Y, R, B); // Should be 0
+    const swapCorners = ['D', 'R', 'D\'', 'L\'', 'D', 'R\'', 'D\'', 'L'];
+    if (count > 3) {
+      console.log('permute last corners error');
+      return;
+    }
+    if (cornerYBO[1] == 8 && cornerYOG[1] == 6 && cornerYGR[1] == 0 && cornerYRB[1] == 2) {
+      return;
+    }
+    else if (cornerYBO[1] == 8) {
+      RubiksCube.doMovesFromArray(swapCorners);
+      cornerYOG = curCanvas.onDisplay.findCornerByColor(Y, O, G);
+      if (cornerYOG[1] != 6) {
+        RubiksCube.doMovesFromArray(swapCorners)
+      }
+    }
+    else if (cornerYOG[1] == 6) {
+      RubiksCube.doMovesFromArray(['D\''])
+      RubiksCube.doMovesFromArray(swapCorners);
+      cornerYGR = curCanvas.onDisplay.findCornerByColor(Y, G, R)
+      if (cornerYGR[1] != 6) {
+        RubiksCube.doMovesFromArray(swapCorners)
+      }
+      RubiksCube.doMovesFromArray(['D'])
+    }
+    else if (cornerYGR[1] == 0) {
+      RubiksCube.doMovesFromArray(['D2']);
+      RubiksCube.doMovesFromArray(swapCorners);
+      cornerYRB = curCanvas.onDisplay.findCornerByColor(Y, R, B);
+      if (cornerYRB[1] != 6) {
+        RubiksCube.doMovesFromArray(swapCorners)
+      }
+      RubiksCube.doMovesFromArray(['D2']);
+    }
+    else if (cornerYRB[1] == 0) {
+      RubiksCube.doMovesFromArray(['D']);
+      RubiksCube.doMovesFromArray(swapCorners);
+      cornerYBO = curCanvas.onDisplay.findCornerByColor(Y, B, O); 
+      if (cornerYBO[1] != 6) {
+        RubiksCube.doMovesFromArray(swapCorners)
+      }
+      RubiksCube.doMovesFromArray(['D\'']);
+    }
+    else {
+      RubiksCube.doMovesFromArray(swapCorners);
+      RubiksCube.permuteLastCorners(count++);
+    }
+  }
+
+  static orientLastEdges() {
+    const flipEdge = ['R', 'U', 'R\'', 'U\''];
+    let count = 0;
+    let check = 0;
+    if ((curCanvas.onDisplay.bottom)[0] != Y) {
+      count++;
+    }
+    if ((curCanvas.onDisplay.bottom)[2] != Y) {
+      count++;
+    }
+    if ((curCanvas.onDisplay.bottom)[6] != Y) {
+      count++;
+    }
+    if ((curCanvas.onDisplay.bottom)[8] != Y) {
+      count++;
+    }
+    while (count != 0) {
+      check = 0;
+      if (curCanvas.onDisplay.bottom[2] == Y) {
+        count--;
+        RubiksCube.doMovesFromArray(['D\''])
+      }
+      while (curCanvas.onDisplay.bottom[2] != Y) {
+        if (check > 7) {
+          console.log('Permute last corner error');
+          return;
+        }
+        RubiksCube.doMovesFromArray(flipEdge)
+        check++;
+      }
+    }
+    return;
+  }
+
   // Input: null
   // Output: null
   static solveCube() {
+    let count = 0;
     RubiksCube.formCross(); // Done
     RubiksCube.permuteWhiteCorners(); // Done
     RubiksCube.rotateWhiteCorners(); // Done
     RubiksCube.solveSecondLayer(); // Done
-    RubiksCube.formYellowCross();
+    RubiksCube.formYellowCross(); // Done
+    RubiksCube.permuteLastEdges(); // Done
+    RubiksCube.permuteLastCorners(0);
+    RubiksCube.orientLastEdges();
+    while (curCanvas.onDisplay.front[7] != R) {
+      if (count > 6) {
+        console.log('Error in rotating last layer');
+        return;
+      }
+      RubiksCube.doMovesFromArray(['D']);
+      count++;
+    }
+
   }
 
   // Input: movesArray: [move1: string, ...]
